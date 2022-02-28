@@ -1,6 +1,7 @@
 """
-Get Disk Info from PE
+Get Alerts from PE
 """
+
 import requests
 import urllib3
 import json
@@ -50,12 +51,12 @@ def main():
 
     # setup the request that will get the VM list
     print("\nGathering disk list ...")
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/disks/"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/alerts/"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     # this request body instructs the v3 API to return the first available VM only
     # request_body = {"kind": "vm", "length": 1}
     request_body = {}
-    print("\nFinished gathering disk list ...")
+    print("\nFinished gathering alerts list ...")
 
     # submit the request that will gather the VM list
     try:
@@ -69,7 +70,7 @@ def main():
 
         # check the results of the request
         if results.status_code == 200 or results.status_code == 201:
-            print("Request successful, disk info ...")
+            print("Request successful, alert info ...")
 
         print(json.dumps(results.json(), indent=4, sort_keys=True))
 
