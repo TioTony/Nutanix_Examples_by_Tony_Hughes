@@ -2,7 +2,7 @@
 #
 ################################################################################
 #
-# This script was written by Tony Hughe for personal use.
+# This script was written by Tony Hughes for personal use.
 #
 # Created starting in December 2020.
 #
