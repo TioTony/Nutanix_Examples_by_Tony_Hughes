@@ -18,6 +18,8 @@ import os
 # Check if running as root or sudo
 # if os.geteuid() != 0:
 #    exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'.  Exiting.")
+# NOTE
+# This script may need to be run more than once without root access
 
 # Host variables (read from file in the future)
 hosta = "10.0.0.131"
@@ -29,30 +31,9 @@ def host_ipmi(host , user, passwd, mode):
     print(args)
     subprocess.run(args, shell=True)
 
-def start_cluster():
-    print("\nStarting Cluster")
-    host_ipmi(hosta, usera, passwda, "on")
-
 def stop_cluster():
     print("\Stopping Cluster")
     host_ipmi(hosta, usera, passwda, "off")
 
-# Main Menu
-menu = {}
-menu['1']="Start Cluster"
-menu['2']="Stop Cluster"
-menu['q']="Exit"
-while True:
-    options=menu.keys()
-    for entry in options:
-        print(entry, menu[entry])
-
-    selection=input("Please Select:")
-    if selection =='1':
-        start_cluster()
-    elif selection =='2':
-        stop_cluster()
-    elif selection =='q':
-        break
-    else:
-        print("\n Invalid Selection")
+# main
+stop_cluster()
