@@ -29,7 +29,7 @@ def main():
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # setup the API request
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vdisks/?path=%2Fdefault-container-25593367216716%2F.acropolis%2Fvmdisk/"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/volume_groups/e3b8e7e7-1d4f-412f-ac41-0d4c10a35b2b/stats/?metrics=vmdisk_size_bytes"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     request_body = {}
 
@@ -52,6 +52,7 @@ def main():
         print(f"Exception: {error.__class__.__name__}")
         sys.exit()
 
-
 if __name__ == "__main__":
     main()
+
+print("VGs are in a different place in 6.1 and maybe that is why this one no longer works right?")

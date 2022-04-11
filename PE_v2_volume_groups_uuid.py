@@ -29,7 +29,7 @@ def main():
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # setup the API request
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vdisks/?path=%2Fdefault-container-25593367216716%2F.acropolis%2Fvmdisk/"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/volume_groups/e3b8e7e7-1d4f-412f-ac41-0d4c10a35b2b?include_disk_size=true&include_disk_path=true"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     request_body = {}
 
