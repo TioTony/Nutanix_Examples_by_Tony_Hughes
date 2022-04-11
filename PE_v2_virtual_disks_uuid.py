@@ -29,13 +29,13 @@ def main():
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # setup the API request
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/tasks/list/"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/virtual_disks/f1845ed8-b48e-4561-9349-d357f1d0d7d3"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     request_body = {}
 
     # Submit the requests and get the output
     try:
-        results = requests.post(
+        results = requests.get(
             endpoint,
             data=json.dumps(request_body),
             headers=request_headers,
