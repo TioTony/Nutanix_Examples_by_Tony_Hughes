@@ -14,7 +14,7 @@ from requests.auth import HTTPBasicAuth
 
 def main():
     # load the script configuration
-    env_path = Path(".") / ".env"
+    env_path = Path("..") / ".env"
     load_dotenv(dotenv_path=env_path)
     PC_IP = os.getenv("PC_IP")
     PC_PORT = os.getenv("PC_PORT")
