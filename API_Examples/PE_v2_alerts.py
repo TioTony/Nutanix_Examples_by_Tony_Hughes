@@ -1,5 +1,5 @@
 """
-02/27/2022 TH: Get Alerts info from PE
+02/27/2022 TH: Get Alerts info from PE refactor
 """
 
 import requests
