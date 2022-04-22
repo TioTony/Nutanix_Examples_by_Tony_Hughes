@@ -29,14 +29,13 @@ def main():
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # setup the API request
-    endpoint = f"https://{PC_IP}:{PC_PORT}/api/nutanix/v3/reports/download/report_instance_pdf/7771ee0b-c554-475a-590f-77f84e75ab3f"
-    request_headers = {"Content-Type": "application/pdf", "charset": "utf-8"}
+    endpoint = f"https://{PC_IP}:{PC_PORT}/api/nutanix/v3/service_groups/list"
+    request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     request_body = {}
-    print(f"Tony Note: Need to revisit, can't get this to work")
 
     # Submit the requests and get the output
     try:
-        results = requests.get(
+        results = requests.post(
             endpoint,
             data=json.dumps(request_body),
             headers=request_headers,
