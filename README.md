@@ -9,3 +9,11 @@ I wanted to create some scripts to start a Nutanix Cluster from a completely col
 - Update the  `.env` file with the correct info.
 - 
 For the rest you are on your own. 
+
+Future
+- Ansible
+- Terraform
+- Calm
+- 200 - Basic operations
+- 300 - Complex operations
+- 400 - Full deployments
