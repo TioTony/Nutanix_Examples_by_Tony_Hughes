@@ -28,7 +28,7 @@ def main():
 
     # setup the API request
     # This is API endpoint to change the powerstate of a VM to "ACPI_SHUTDOWN" which should gracefully
-    # shutdown and power-off the Prism Central..
+    # shutdown and power-off the Prism Central.
     # Update the UUID to the proper value for the Prism Central VM
     # The UUID can be found by using the 100 Level Prism_Element_v2_GET_vms-no_parameters.py
     # The output may be long, you are looking for something like this. note the UUID entry:
