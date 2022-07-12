@@ -252,6 +252,7 @@ def start_cluster():
     sleep(60)
     # Start the cluster
     cluster_cli_start()
+    sleep(600)
     start_prism_central()
 
 def stop_cluster():
