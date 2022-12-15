@@ -24,8 +24,8 @@ import subprocess
 import os
 
 # Check if running as root or sudo
-if os.geteuid() != 0:
-    exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'.  Exiting.")
+#if os.geteuid() != 0:
+#    exit("You need to have root privileges to run this script.\nPlease try again, this time using 'sudo'.  Exiting.")
 
 # Host variables
 # host<n> is the IPMI IP address
