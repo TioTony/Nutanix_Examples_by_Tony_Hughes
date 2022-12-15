@@ -64,7 +64,7 @@ nodetuple = (nodea, nodeb, nodec, noded)
 cluster1 = NTNXCluster("10.0.0.113", "9440", "admin", "nx2Tech714!")
 
 # command use to start the cluster
-command = "/usr/local/nutanix/cluster/bin/cluster start"
+clusterstartcommand = "/usr/local/nutanix/cluster/bin/cluster start"
 
 
 # Ping the CVMs to ensure they are available before starting the cluster
@@ -90,6 +90,21 @@ def host_ipmi(host , user, passwd, mode):
     print(args)
     subprocess.run(args, shell=True)
 
+def cluster_cli_start():
+    # Establish an SSH session with paramiko
+    ssh = paramiko.SSHClient()
+    # Accept ssh key if this is the first time connecting.
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    # Create an ssh connection to the First CVM in the tuple
+    ssh.connect(nodetuple[0].cvmip, username=nodetuple[0].cvmuser, password=nodetuple[0].cvmpass)
+    # Execute the command to start the cluster.  Capture stdin, stdout, and stderr from the command.
+    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(clusterstartcommand)
+    # Print stdout from the command
+    print(ssh_stdout.read().decode())
+    # Print stderr from the command
+    print(ssh_stderr.read().decode())
+    # Cleanly close the ssh session
+    ssh.close()
 def start_cluster():
     print("\nStarting Cluster")
     for node in nodetuple:
@@ -101,9 +116,9 @@ def start_cluster():
         ping_result = check_ping()
         sleep(15)
     # Wait 60 seconds once CVM is responsive to ensure it is accepting requests
-    # sleep(60)
+    sleep(60)
     # Start the cluster
-    # cluster_cli_start()
+    cluster_cli_start()
     # NEED TO UPDATE
     # sleep(600)
     # start_prism_central()
