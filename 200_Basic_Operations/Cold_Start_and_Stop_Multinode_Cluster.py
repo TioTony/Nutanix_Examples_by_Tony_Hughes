@@ -141,8 +141,29 @@ def start_cluster():
     # NEED TO UPDATE
     # sleep(600)
     # start_prism_central()
+    print("\nCOMPLETE: Cluster has started")
 
+# Loop through each node in nodelist and shutdown the CVM
+def shutdown_cvm():
+    for node in nodetuple:
+        # Command used to stop the CVM
+        command = "sudo shutdown -P now"
+        # Establish an SSH session with paramiko
+        ssh = paramiko.SSHClient()
+        # Accept ssh key if this is the first time connecting.
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        # Create an ssh connection to the CVM
+        ssh.connect(node.cvmip, username=node.cvmuser, password=node.cvmpass)
+        # Execute the command to stop the CVM.  Capture stdin, stdout, and stderr from the command.
+        ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command)
+        # Print stdout from the command
+        print(ssh_stdout.read().decode())
+        # Print stderr from the command
+        print(ssh_stderr.read().decode())
+        # Cleanly close the ssh session
+        ssh.close()
 def stop_cluster():
+    print("\nStopping Cluster")
     # Need to add code here to stop all VMs
     # newfunction() to stop all VMs
     # Stop Prism Central
@@ -152,10 +173,11 @@ def stop_cluster():
     # sleep(300)
     # Stop the cluster
     cluster_cli_stop()
-    # shutdown_cvm()
+    # Shutdown the CVMs
+    shutdown_cvm()
     # Pass the IPMI IP address, username, password and powerstate to the host_ipmi function
-    print("\Stopping Cluster")
     # host_ipmi(hosta, usera, passwda, "off")
+    print("\nCOMPLETE: Cluster has stopped")
 
 # Main Menu
 menu = {}
@@ -170,8 +192,8 @@ while True:
     selection=input("Please Select:")
     if selection =='1':
         start_cluster()
-    # elif selection =='2':
-    #    stop_cluster()
+    elif selection =='2':
+        stop_cluster()
     elif selection =='q':
         break
     else:
