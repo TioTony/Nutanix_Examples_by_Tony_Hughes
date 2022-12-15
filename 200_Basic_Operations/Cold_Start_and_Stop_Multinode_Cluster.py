@@ -65,10 +65,6 @@ nodetuple = (nodea, nodeb, nodec, noded)
 #Define the clusters
 cluster1 = NTNXCluster("10.0.0.113", "9440", "admin", "nx2Tech714!")
 
-# command use to start the cluster
-clusterstartcommand = "/usr/local/nutanix/cluster/bin/cluster start"
-
-
 # Ping the CVMs to ensure they are available before starting the cluster
 # Any CVM that does not return a ping packet will set the status to "Network Error"
 # If all CVMs return the ping successfully the status will be "Network Active"
@@ -93,6 +89,8 @@ def host_ipmi(host , user, passwd, mode):
     subprocess.run(args, shell=True)
 
 def cluster_cli_start():
+    # command use to start the cluster
+    clusterstartcommand = "/usr/local/nutanix/cluster/bin/cluster start"
     # Establish an SSH session with paramiko
     ssh = paramiko.SSHClient()
     # Accept ssh key if this is the first time connecting.
@@ -101,6 +99,25 @@ def cluster_cli_start():
     ssh.connect(nodetuple[0].cvmip, username=nodetuple[0].cvmuser, password=nodetuple[0].cvmpass)
     # Execute the command to start the cluster.  Capture stdin, stdout, and stderr from the command.
     ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(clusterstartcommand)
+    # Print stdout from the command
+    print(ssh_stdout.read().decode())
+    # Print stderr from the command
+    print(ssh_stderr.read().decode())
+    # Cleanly close the ssh session
+    ssh.close()
+
+def cluster_cli_stop():
+    # command use to stop the cluster
+    # "cluster stop" is interactive and "I agree" must be entered to run the command.  This handles the promts and runs the command.
+    command = "source /etc/profile; echo 'I agree' | cluster stop"
+    # Establish an SSH session with paramiko
+    ssh = paramiko.SSHClient()
+    # Accept ssh key if this is the first time connecting.
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    # Create an ssh connection to the first CVM in the tuple
+    ssh.connect(nodetuple[0].cvmip, username=nodetuple[0].cvmuser, password=nodetuple[0].cvmpass)
+    # Execute the command to stop the cluster.  Capture stdin, stdout, and stderr from the command.
+    ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(command)
     # Print stdout from the command
     print(ssh_stdout.read().decode())
     # Print stderr from the command
@@ -125,12 +142,25 @@ def start_cluster():
     # sleep(600)
     # start_prism_central()
 
-
+def stop_cluster():
+    # Need to add code here to stop all VMs
+    # newfunction() to stop all VMs
+    # Stop Prism Central
+    # stop_prism_central()
+    # wait a few minutes for Prism Central to power off
+    # Need to add some code here to confirm it is off
+    # sleep(300)
+    # Stop the cluster
+    cluster_cli_stop()
+    # shutdown_cvm()
+    # Pass the IPMI IP address, username, password and powerstate to the host_ipmi function
+    print("\Stopping Cluster")
+    # host_ipmi(hosta, usera, passwda, "off")
 
 # Main Menu
 menu = {}
 menu['1']="Start Cluster"
-# menu['2']="Stop Cluster"
+menu['2']="Stop Cluster"
 menu['q']="Exit"
 while True:
     options=menu.keys()
