@@ -20,6 +20,8 @@
 #imports
 import subprocess
 import os
+from time import sleep
+
 
 # Class to capture the details of each node
 # - impihostip is the IP address for the IPMI interface
@@ -64,35 +66,34 @@ cluster1 = NTNXCluster("10.0.0.113", "9440", "admin", "nx2Tech714!")
 # command use to start the cluster
 command = "/usr/local/nutanix/cluster/bin/cluster start"
 
+
+# Ping the CVMs to ensure they are available before starting the cluster
+# Any CVM that does not return a ping packet will set the status to "Network Error"
+# If all CVMs return the ping successfully the status will be "Network Active"
 def check_ping():
-    # Ping the CVMs to ensure they are available before starting the cluster
-    # Any CVM that does not return a ping packet will set the status to "Network Error"
-    # If all CVMs return the ping successfully the status will be "Network Active"
     ping_status = "Network Active"
     for node in nodetuple:
-        response = os.system("ping -c 1 " + node.cvmip)
-        # and then check the response...
-        if response == 0:
-           # 0 means the CVM has responded to the ping request
+       response = os.system("ping -c 1 " + node.cvmip)
+       # and then check the response...
+       if response == 0:
            # do nothing
-        else:
+           print('\nPing successful: ' + node.cvmip)
+       else:
            # Any value other than 0 indicates the ping request failed
+           print('\nPing failed: ' + node.cvmip)
            ping_status = "Network Error"
-        return ping_status
+    return ping_status
 
 # Take the passed input variables and boot the node
 def host_ipmi(host , user, passwd, mode):
-    # 121522 Needs Updating
     args = ['/usr/bin/ipmitool -H '+host+' -I lan -P '+passwd+' -U '+user+' -v power '+mode+'']
     print(args)
     subprocess.run(args, shell=True)
 
-# Run the above host_ipmi command to change the power state for each node to "on"
 def start_cluster():
-    # 121522 Needs Updating
     print("\nStarting Cluster")
     for node in nodetuple:
-        host_ipmi(node.ipmihostip, node.ipmihostip, node.ipmipass, "on")
+        host_ipmi(node.ipmihostip, node.ipmiuser, node.ipmipass, "on")
     # Ping the CVM until it responds
     ping_result = "Starting Ping Test"
     while ping_result != "Network Active":
@@ -107,27 +108,7 @@ def start_cluster():
     # sleep(600)
     # start_prism_central()
 
-# Run the above host_ipmi command to change the power state for each node to "off"
-def stop_cluster():
-    # 121522 Needs Updating
-    # Need to add code here to stop all VMs
-    # newfunction() to stop all VMs
-    # Stop Prism Central
-    # NEED TO UPDATE THIS LATER
-    #stop_prism_central()
-    # wait a few minutes for Prism Central to power off
-    # Need to add some code here to confirm it is off
-    # Remove commend after updated above
-    # sleep(300)
-    # Stop the cluster
-    # cluster_cli_stop()
-    # shutdown_cvm()
-    # Pass the IPMI IP address, username, password and powerstate to the host_ipmi function
-    # print("\Stopping Cluster")
-    # host_ipmi(hosta, usera, passwda, "off")
-    # host_ipmi(hostb, userb, passwdb, "off")
-    # host_ipmi(hostc, userc, passwdc, "off")
-    # host_ipmi(hostd, userd, passwdd, "off")
+
 
 # Main Menu
 menu = {}
