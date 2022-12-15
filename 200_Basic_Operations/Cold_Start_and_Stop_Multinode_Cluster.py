@@ -176,7 +176,8 @@ def stop_cluster():
     # Shutdown the CVMs
     shutdown_cvm()
     # Pass the IPMI IP address, username, password and powerstate to the host_ipmi function
-    # host_ipmi(hosta, usera, passwda, "off")
+    for node in nodetuple:
+        host_ipmi(node.ipmihostip, node.ipmiuser, node.ipmipass, "off")
     print("\nCOMPLETE: Cluster has stopped")
 
 # Main Menu
