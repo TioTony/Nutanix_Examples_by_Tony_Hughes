@@ -22,6 +22,8 @@ import subprocess
 import os
 from time import sleep
 
+import paramiko
+
 
 # Class to capture the details of each node
 # - impihostip is the IP address for the IPMI interface
