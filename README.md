@@ -1,5 +1,7 @@
 # Tony's Nutanix Samples
 
+NOTE from 12/28/2022 - This project is continually in a state of change and refactoring.  Use it if you like and feel free to open bugs against it."
+
 The origin of this project was twofold.  First I wanted to script a mechanism for starting Nutanix clusters from a cold stated and also stopping a cluster and returning it to a cold state in my home lab simply as a time saving measure.  Second, I wanted to start exploring what else I could automate.  I started by simply exploring the v2 and v3 APIs with atomic calls to gain an understanding of how they work and what features may be available.  
 
 I plan to continue adding other content that seems relevant as I explore my own use cases.
