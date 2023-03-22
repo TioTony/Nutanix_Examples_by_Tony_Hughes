@@ -1,5 +1,6 @@
 """
-02/27/2022 TH: Get Alerts info from PE refactor
+This code snippet shows an example of the v2.0 alerts API and will list details for all alerts
+on the cluster.
 """
 
 import requests

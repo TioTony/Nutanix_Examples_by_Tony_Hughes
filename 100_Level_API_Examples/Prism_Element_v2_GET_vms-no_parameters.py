@@ -1,14 +1,15 @@
 """
-02/27/2022 TH: Get Alerts info from PE refactor
+This code snippet shows an example of the v2.0 vms API and will list details for all VMs
+NOTE: There may be a limit to how many VMs are listed if you have a ton of VMs.
 """
-
-import requests
-import urllib3
 import json
 import os
 import sys
-from dotenv import load_dotenv
 from pathlib import Path
+
+import requests
+import urllib3
+from dotenv import load_dotenv
 from requests.auth import HTTPBasicAuth
 
 
@@ -25,16 +26,11 @@ def main():
     CLUSTER_USERNAME = os.getenv("CLUSTER_USERNAME")
     CLUSTER_PASSWORD = os.getenv("CLUSTER_PASSWORD")
 
-    # print(f"Cluster IP: {CLUSTER_IP}")
-    # print(f"Cluster Port: {CLUSTER_PORT}")
-    # print(f"Prism Central IP: {PC_IP}")
-    # print(f"Prism Central Port: {PC_PORT}")
-
     # don't worry about invalid certs
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-    # Setup the API request
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/alerts/"
+    # setup the API request
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vms/"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     request_body = {}
 
@@ -49,8 +45,8 @@ def main():
         )
 
         # check the results of the request
-        if results.status_code == 200 or results.status_code == 201:
-            print(json.dumps(results.json(), indent=4, sort_keys=True))
+        # if results.status_code == 200 or results.status_code == 201:
+        print(json.dumps(results.json(), indent=4, sort_keys=True))
 
     except Exception as error:
         print(f"ERROR: {error}")
