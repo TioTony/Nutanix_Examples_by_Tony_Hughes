@@ -54,19 +54,19 @@ class NTNXCluster:
         self.clusterpass = clusterpass
 
 #Define each node here
-nodea = NTNXNode("10.0.0.101", "ADMIN", "ADMIN", "10.0.0.109", "nutanix", "nutanix/4u")
-nodeb = NTNXNode("10.0.0.102", "ADMIN", "ADMIN", "10.0.0.110", "nutanix", "nutanix/4u")
-nodec = NTNXNode("10.0.0.103", "ADMIN", "ADMIN", "10.0.0.111", "nutanix", "nutanix/4u")
-noded = NTNXNode("10.0.0.104", "ADMIN", "ADMIN", "10.0.0.112", "nutanix", "nutanix/4u")
+nodea = NTNXNode("10.21.56.81", "ADMIN", "ADMIN", "10.21.255.21", "nutanix", "nutanix/4u")
+nodeb = NTNXNode("10.21.56.82", "ADMIN", "ADMIN", "10.21.255.22", "nutanix", "nutanix/4u")
+nodec = NTNXNode("10.21.56.83", "ADMIN", "ADMIN", "10.21.255.23", "nutanix", "nutanix/4u")
+noded = NTNXNode("10.21.56.84", "ADMIN", "ADMIN", "10.21.255.24", "nutanix", "nutanix/4u")
 
 #Put all the nodes in a tuple
 nodetuple = (nodea, nodeb, nodec, noded)
 
 #Define the clusters
-cluster1 = NTNXCluster("10.0.0.113", "9440", "admin", "nx2Tech714!")
+cluster1 = NTNXCluster("10.21.255.16", "9440", "admin", "nx2Tech714!")
 
 # Ping the CVMs to ensure they are available before starting the cluster
-# Any CVM that does not return a ping packet will set the status to "Network Error"
+# Any CVM that does not return a ping packet will set the status1 to "Network Error"
 # If all CVMs return the ping successfully the status will be "Network Active"
 def check_ping():
     ping_status = "Network Active"
