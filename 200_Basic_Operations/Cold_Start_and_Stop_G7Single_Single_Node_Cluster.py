@@ -159,7 +159,7 @@ def start_prism_central():
                 "VGA_CONSOLE": true
             },
     """
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vms/3064ea90-6abf-423a-a625-4d70a9bdd219/set_power_state"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vms/641c7c54-2b4a-4b71-b206-31d24c641e39/set_power_state"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     # transition the power state to "on"
     request_body = {"transition": "on"}
@@ -213,7 +213,7 @@ def stop_prism_central():
                 "VGA_CONSOLE": true
             },
     """
-    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vms/3064ea90-6abf-423a-a625-4d70a9bdd219/set_power_state"
+    endpoint = f"https://{CLUSTER_IP}:{CLUSTER_PORT}/PrismGateway/services/rest/v2.0/vms/641c7c54-2b4a-4b71-b206-31d24c641e39/set_power_state"
     request_headers = {"Content-Type": "application/json", "charset": "utf-8"}
     # Power off Prism Central
     request_body = {"transition": "ACPI_SHUTDOWN"}
