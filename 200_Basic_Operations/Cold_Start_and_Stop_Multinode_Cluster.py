@@ -54,10 +54,10 @@ class NTNXCluster:
         self.clusterpass = clusterpass
 
 #Define each node here
-nodea = NTNXNode("10.21.56.81", "ADMIN", "ADMIN", "10.21.255.21", "nutanix", "nutanix/4u")
-nodeb = NTNXNode("10.21.56.82", "ADMIN", "ADMIN", "10.21.255.22", "nutanix", "nutanix/4u")
-nodec = NTNXNode("10.21.56.83", "ADMIN", "ADMIN", "10.21.255.23", "nutanix", "nutanix/4u")
-noded = NTNXNode("10.21.56.84", "ADMIN", "ADMIN", "10.21.255.24", "nutanix", "nutanix/4u")
+nodea = NTNXNode("10.21.255.42", "ADMIN", "ADMIN", "10.21.255.21", "nutanix", "nutanix/4u")
+nodeb = NTNXNode("10.21.255.43", "ADMIN", "ADMIN", "10.21.255.22", "nutanix", "nutanix/4u")
+nodec = NTNXNode("10.21.255.44", "ADMIN", "ADMIN", "10.21.255.23", "nutanix", "nutanix/4u")
+noded = NTNXNode("10.21.255.45", "ADMIN", "ADMIN", "10.21.255.24", "nutanix", "nutanix/4u")
 
 #Put all the nodes in a tuple
 nodetuple = (nodea, nodeb, nodec, noded)
