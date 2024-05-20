@@ -53,18 +53,14 @@ class NTNXCluster:
         self.clusteruser = clusteruser
         self.clusterpass = clusterpass
 
-#5/18/2024 TH - Node D is currently out of the cluster
 #Define each node here
 nodea = NTNXNode("10.21.255.42", "ADMIN", "ADMIN", "10.21.255.21", "nutanix", "nx2Tech714!")
 nodeb = NTNXNode("10.21.255.43", "ADMIN", "ADMIN", "10.21.255.22", "nutanix", "nx2Tech714!")
 nodec = NTNXNode("10.21.255.44", "ADMIN", "ADMIN", "10.21.255.23", "nutanix", "nx2Tech714!")
-# noded = NTNXNode("10.21.255.45", "ADMIN", "ADMIN", "10.21.255.24", "nutanix", "nutanix/4u")
-
-#5/18/2024 TH - Node D is currently out of the cluster2
+noded = NTNXNode("10.21.255.45", "ADMIN", "ADMIN", "10.21.255.24", "nutanix", "nx2Tech714!")
 
 #Put all the nodes in a tuple
-# nodetuple = (nodea, nodeb, nodec, noded)
-nodetuple = (nodea, nodeb, nodec)
+nodetuple = (nodea, nodeb, nodec, noded)
 
 #Define the clusters
 cluster1 = NTNXCluster("10.21.255.16", "9440", "admin", "nx2Tech714!")

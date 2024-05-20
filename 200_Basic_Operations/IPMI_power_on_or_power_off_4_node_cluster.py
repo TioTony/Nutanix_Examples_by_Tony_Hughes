@@ -32,16 +32,16 @@ import os
 # user<n> is the IPMI user
 # passwd<n> is the IPMI password
 # Update these to match the existing 4 node cluster
-hosta = "10.21.56.81"
+hosta = "10.21.255.42"
 usera = "ADMIN"
 passwda = "ADMIN"
-hostb = "10.21.56.82"
+hostb = "10.21.255.43"
 userb = "ADMIN"
 passwdb = "ADMIN"
-hostc = "10.21.56.83"
+hostc = "10.21.255.44"
 userc = "ADMIN"
 passwdc = "ADMIN"
-hostd = "10.21.56.84"
+hostd = "10.21.255.45"
 userd = "ADMIN"
 passwdd = "ADMIN"
 
